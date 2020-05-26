@@ -86,8 +86,11 @@ With an instantiated Cobalt object you can **set**, **get** and **remove** a key
 
 ```typescript
 cobalt.set('key', 'test'); // Sets the value 'test' for the key 'test'
+
 cobalt.get('key'); // Returns 'test'
+
 cobalt.remove('key'); // Removes the key from the cache
+
 cobalt.get('key'); // Returns null
 ```
 
