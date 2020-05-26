@@ -54,7 +54,8 @@
 - [x] forEach, forEachReverse methods
 - [x] has, pop, reset methods
 - [x] toArray, toArrayReverse methods
-- [ ] peek, load, keys, values methods
+- [x] keys, values methods
+- [ ] peek, load methods
 - [ ] stale entries management
 - [ ] support different key/value types (or at least support serialization natively)
 
