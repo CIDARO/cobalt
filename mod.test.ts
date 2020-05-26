@@ -1,7 +1,7 @@
-import { LRUCache, LRUEntry } from "./mod.ts";
+import { Cobalt } from "./mod.ts";
 import { assertEquals } from "https://deno.land/std@v0.50.0/testing/asserts.ts";
 
-const cache = new LRUCache(100);
+const cache = new Cobalt(100);
 
 Deno.test("Setting one item.", () => {
     cache.set('test', 'test');

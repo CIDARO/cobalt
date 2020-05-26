@@ -1,26 +1,26 @@
 /**
- * LRUEntry class defines all the objects that are available 
+ * CobaltEntry class defines all the objects that are available 
  * in the double linked list and in the cache.
  */
-export class LRUEntry {
-    // LRUEntry key
+export class CobaltEntry {
+    // CobaltEntry key
     key: String;
-    // LRUEntry value
+    // CobaltEntry value
     value: String;
-    // Next LRUEntry in the list
-    next: LRUEntry | null;
-    // Prev LRUEntry in the list
-    prev: LRUEntry | null;
+    // Next CobaltEntry in the list
+    next: CobaltEntry | null;
+    // Prev CobaltEntry in the list
+    prev: CobaltEntry | null;
 
     /**
-     * Constructor method for a new LRUEntry
+     * Constructor method for a new CobaltEntry
      * 
      * @param key entry key
      * @param value entry value
      * @param next next entry in the list
      * @param prev previous entry in the list
      */
-    constructor(key: String, value: String, next?: LRUEntry, prev?: LRUEntry) {
+    constructor(key: String, value: String, next?: CobaltEntry, prev?: CobaltEntry) {
         this.key = key;
         this.value = value;
         this.next = next || null;
@@ -29,26 +29,26 @@ export class LRUEntry {
 }
 
 /**
- * LRUCache defines our least recently used cache.
+ * Cobalt defines our least recently used cache.
  */
-export class LRUCache {
-    // LRUCache capacity (default is 1000)
+export class Cobalt {
+    // Cobalt capacity (default is 1000)
     capacity: number;
-    // LRUCache map
-    cache: Map<String, LRUEntry>;
-    // LRUCache head (most recently used item)
-    head: LRUEntry | null;
-    // LRUCache tail (least recently used item)
-    tail: LRUEntry | null;
+    // Cobalt map
+    cache: Map<String, CobaltEntry>;
+    // Cobalt head (most recently used item)
+    head: CobaltEntry | null;
+    // Cobalt tail (least recently used item)
+    tail: CobaltEntry | null;
 
     /**
-     * Constructor method for a new LRUCache
+     * Constructor method for a new Cobalt
      * 
      * @param capacity cache capacity
      */
     constructor(capacity?: number) {
         this.capacity = capacity || 1000;
-        this.cache = new Map<String, LRUEntry>();
+        this.cache = new Map<String, CobaltEntry>();
         this.head = null;
         this.tail = null;
     }
@@ -62,23 +62,23 @@ export class LRUCache {
 
     /**
      * Sets a new key/value pair in the LRU cache.
-     * Creates a new LRUEntry that becomes the new head of the list.
+     * Creates a new CobaltEntry that becomes the new head of the list.
      * 
      * @param key new entry key
      * @param value new entry value
      */
     set(key: String, value: String) {
-        // Check if the LRUCache has still space available
+        // Check if the Cobalt has still space available
         if (this.size >= this.capacity && this.tail) this.remove(this.tail.key);
         // Initialize the new entry variable
         let newEntry;
         // Create the new entry
         if (!this.head) {
-            newEntry = new LRUEntry(key, value);
+            newEntry = new CobaltEntry(key, value);
             // Set it as the new head and tail
             this.head = this.tail = newEntry;
         } else {
-            newEntry = new LRUEntry(key, value, this.head);
+            newEntry = new CobaltEntry(key, value, this.head);
             // Change the current head prev link
             this.head.prev = newEntry;
             // Set the new entry as the head
@@ -169,18 +169,18 @@ export class LRUCache {
     }
 
     /**
-     * Resets the LRUCache object.
+     * Resets the Cobalt object.
      * Sets the head and tail to null and creates an empty
      * map for the cache property.
      */
     reset() {
-        this.cache = new Map<String, LRUEntry>();
+        this.cache = new Map<String, CobaltEntry>();
         this.head = null;
         this.tail = null;
     }
     
     /**
-     * Iterates through all the nodes in the LRUCache.
+     * Iterates through all the nodes in the Cobalt.
      * Takes a function as an input that can consume
      * the (currentNode, index) tuple like any array.
      * 
@@ -203,7 +203,7 @@ export class LRUCache {
     }
 
     /**
-     * Iterates through all the nodes in the LRUCache in reverse order.
+     * Iterates through all the nodes in the Cobalt in reverse order.
      * Takes a function as an input that can consume
      * the (currentNode, index) tuple like any array.
      * 
