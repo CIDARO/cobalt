@@ -37,7 +37,7 @@
 
 ## Status
 
-**Cobalt** is currently in **1.0.0 version**. It has never been released and currently it's only an idea that we're developing. Please, please, please, **do not** use this in production unless you think it's useful for you!
+**Cobalt** is currently in **1.0.0**.
 
 ---
 
