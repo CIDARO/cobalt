@@ -71,7 +71,7 @@
 In order to import Cobalt in your Deno code you must import it at the top:
 
 ```typescript
-import { Cobalt } from "https://github.com/CIDARO/cobalt/blob/master/mod.ts";
+import { Cobalt } from "https://raw.githubusercontent.com/CIDARO/cobalt/master/mod.ts";
 ```
 
 ### Create new Cobalt object
