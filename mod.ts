@@ -11,6 +11,10 @@ export class CobaltEntry {
     next: CobaltEntry | null;
     // Prev CobaltEntry in the list
     prev: CobaltEntry | null;
+    // When the entry has been created
+    date: number;
+    // Entry max age
+    maxAge: number = 0;
 
     /**
      * Constructor method for a new CobaltEntry
@@ -20,11 +24,23 @@ export class CobaltEntry {
      * @param next next entry in the list
      * @param prev previous entry in the list
      */
-    constructor(key: String, value: String, next?: CobaltEntry, prev?: CobaltEntry) {
+    constructor(key: String, value: String, next?: CobaltEntry, prev?: CobaltEntry, maxAge?: number) {
         this.key = key;
         this.value = value;
         this.next = next || null;
         this.prev = prev || null;
+        this.date = Date.now();
+        this.maxAge = maxAge || 0;
+    }
+
+    /**
+     * Returns true if the entry is stale, false otherwise.
+     * 
+     * @returns true if the entry is stale, false otherwise
+     */
+    get stale() {
+        if (!this.maxAge) return false;
+        return Date.now() - this.date > this.maxAge;
     }
 }
 
@@ -40,17 +56,23 @@ export class Cobalt {
     head: CobaltEntry | null;
     // Cobalt tail (least recently used item)
     tail: CobaltEntry | null;
+    // If the cache allows staleness or not
+    allowStale: boolean;
+    // Max age that an entry can live in seconds if allowStale is true
+    maxAge: number = 0;
 
     /**
      * Constructor method for a new Cobalt
      * 
      * @param capacity cache capacity
      */
-    constructor(capacity?: number) {
+    constructor(capacity?: number, allowStale?: boolean, maxAge?: number) {
         this.capacity = capacity || 1000;
         this.cache = new Map<String, CobaltEntry>();
         this.head = null;
         this.tail = null;
+        this.allowStale = allowStale || false;
+        if (this.allowStale) this.maxAge = maxAge || 0;
     }
 
     /**
@@ -74,11 +96,11 @@ export class Cobalt {
         let newEntry;
         // Create the new entry
         if (!this.head) {
-            newEntry = new CobaltEntry(key, value);
+            newEntry = new CobaltEntry(key, value, undefined, undefined, this.maxAge);
             // Set it as the new head and tail
             this.head = this.tail = newEntry;
         } else {
-            newEntry = new CobaltEntry(key, value, this.head);
+            newEntry = new CobaltEntry(key, value, this.head, undefined, this.maxAge);
             // Change the current head prev link
             this.head.prev = newEntry;
             // Set the new entry as the head
@@ -113,6 +135,9 @@ export class Cobalt {
         if (!entry) return null;
         // Remove the key
         this.remove(key);
+        if (entry.stale) {
+            return null;
+        }
         // Set again the key/value pair
         this.set(key, entry.value);
         // Return the value
@@ -138,11 +163,11 @@ export class Cobalt {
         // If no tail is present just return null
         if (!this.tail) return null;
         // Get the value
-        const tailValue = this.tail.value;
+        const { value, stale } = this.tail;
         // Remove the tail
         this.remove(this.tail.key);
         // Return the tail value
-        return tailValue;
+        return stale ? null : value;
     }
 
     /**
