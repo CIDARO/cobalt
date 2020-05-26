@@ -91,6 +91,32 @@ cobalt.remove('key'); // Removes the key from the cache
 cobalt.get('key'); // Returns null
 ```
 
+### Useful functions and properties
+
+These are some of the functions that you can use with a Cobalt object:
+
+```typescript
+cobalt.size; // returns the cache size
+
+cobalt.reset(); // resets the cache to its starting configuration
+
+cobalt.keys(); // returns an array with all the keys in the cache
+
+cobalt.values(); // returns an array with all the values in the cache
+
+cobalt.has('key'); // returns true if the cache has the 'key' key, false otherwise
+
+cobalt.pop(); // removes the last entry (tail) and returns its value
+
+cobalt.forEach((entry, index) => /* do something */); // iterates through the cache from the MRU to the LRU
+
+cobalt.forEachReverse((entry, index) => /* do something */); // iterates through the cache from the LRU to the MRU
+
+cobalt.toArray(); // returns the cache as an array of entries
+
+cobalt.toArrayReverse(); // returns the cache as a reversed array of entries
+```
+
 ### Run tests
 
 In order to run the tests, just clone the directory:
