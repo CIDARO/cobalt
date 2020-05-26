@@ -1,11 +1,17 @@
 import { Cobalt } from "./mod.ts";
-import { assertEquals } from "https://deno.land/std@v0.50.0/testing/asserts.ts";
+import { assertEquals, assert, assertNotEquals } from "https://deno.land/std@v0.50.0/testing/asserts.ts";
 
 const cache = new Cobalt(100);
+const staleCache = new Cobalt(100, true, 1);
 
 Deno.test("Setting one item.", () => {
     cache.set('test', 'test');
     assertEquals(cache.get('test'), 'test', 'Value set is different.');
+})
+
+Deno.test("Setting one item in the stale cache.", () => {
+    staleCache.set('key', 'value');
+    assertEquals(staleCache.get('key'), 'value', 'Value set is different.');
 })
 
 Deno.test("Retrieving an unexisting key.", () => {
@@ -40,4 +46,9 @@ Deno.test("Converting cache to an array.", () => {
 Deno.test("Converting cache to a reversed array.", () => {
     const array = cache.toArrayReverse();
     assertEquals(array.length, cache.size, 'Reversed array length and cache size do not match.');
+})
+
+Deno.test("Retrieving the stale item.", () => {
+    assertNotEquals(staleCache.get('key'), 'value', 'Value is not null after staleness.');
+    assertEquals(staleCache.get('key'), null, 'Value is not null after staleness.');
 })
