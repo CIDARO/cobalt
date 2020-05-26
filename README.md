@@ -9,6 +9,20 @@
   <p>
     version 1.0.0
   </p>
+  <p>
+    <a href="https://github.com/CIDARO/cobalt/issues">
+      <img src="https://img.shields.io/github/issues/CIDARO/cobalt">
+    </a>
+    <a href="https://github.com/CIDARO/cobalt/network">
+      <img src="https://img.shields.io/github/network/CIDARO/cobalt">
+    </a>
+    <a href="https://github.com/CIDARO/cobalt/stargazers">
+      <img src="https://img.shields.io/github/stargazers/CIDARO/cobalt">
+    </a>
+    <a href="https://github.com/CIDARO/cobalt/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/CIDARO/cobalt">
+    </a>
+  </p>
   <br/>
   <p>
     <a href="#status"><strong>Status</strong></a> ·
