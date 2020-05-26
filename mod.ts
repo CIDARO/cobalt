@@ -196,7 +196,7 @@ export class Cobalt {
      */
     keys(): String[] {
         const keys: String[] = [];
-        this.forEach((entry: CobaltEntry) => {
+        this.forEach((entry: CobaltEntry, index: number) => {
             keys.push(entry.key);
         })
         return keys;
@@ -209,7 +209,7 @@ export class Cobalt {
      */
     values(): any[] {
         const values: any[] = [];
-        this.forEach((entry: CobaltEntry) => {
+        this.forEach((entry: CobaltEntry, index: number) => {
             values.push(entry.value);
         })
         return values;
@@ -230,7 +230,7 @@ export class Cobalt {
         // Iterate until there's a currentNode as next
         while (currentNode) {
             // Call the function given as an input
-            fn.call(currentNode, index);
+            fn(currentNode, index);
             // Update the current node with the next
             currentNode = currentNode.next;
             // Increase the index
@@ -253,7 +253,7 @@ export class Cobalt {
         // Iterate until there's a currentNode as previous
         while (currentNode) {
             // Call the function given as an input
-            fn.call(currentNode, index);
+            fn(currentNode, index);
             // Update the current node with the previous
             currentNode = currentNode.prev;
             // Decrease the index

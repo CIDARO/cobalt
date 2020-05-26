@@ -21,3 +21,23 @@ Deno.test("Inserting 100 items.", () => {
     assertEquals(cache.get('1'), '1', 'Value set is different.');
     assertEquals(cache.get('test'), null, 'Item retrieved is not null.');
 })
+
+Deno.test("Retrieving all the keys.", () => {
+    const keys = cache.keys();
+    assertEquals(keys.length, cache.size, 'Keys length and cache size do not match.');
+})
+
+Deno.test("Retrieving all the values.", () => {
+    const values = cache.values();
+    assertEquals(values.length, cache.size, 'Values length and cache size do not match.');
+})
+
+Deno.test("Converting cache to an array.", () => {
+    const array = cache.toArray();
+    assertEquals(array.length, cache.size, 'Array length and cache size do not match.');
+})
+
+Deno.test("Converting cache to a reversed array.", () => {
+    const array = cache.toArrayReverse();
+    assertEquals(array.length, cache.size, 'Reversed array length and cache size do not match.');
+})
