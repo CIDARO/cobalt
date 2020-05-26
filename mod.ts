@@ -89,6 +89,16 @@ export class Cobalt {
     }
 
     /**
+     * Sets a new key/value pair in the LRU cache using
+     * an existing CobaltEntry object.
+     * 
+     * @param entry entry to set
+     */
+    _setEntry(entry: CobaltEntry) {
+        this.set(entry.key, entry.value);
+    }
+
+    /**
      * Retrieves the value associated to a key.
      * Also, it removes and sets again the key/value pair so
      * it is marked as a most recently used.
@@ -178,6 +188,32 @@ export class Cobalt {
         this.head = null;
         this.tail = null;
     }
+
+    /**
+     * Returns an array with all the keys in the cache.
+     * 
+     * @returns all the keys in the cache
+     */
+    keys(): String[] {
+        const keys: String[] = [];
+        this.forEach((entry: CobaltEntry) => {
+            keys.push(entry.key);
+        })
+        return keys;
+    }
+
+    /**
+     * Returns an array with all the values in the cache.
+     * 
+     * @returns all the values in the cache
+     */
+    values(): any[] {
+        const values: any[] = [];
+        this.forEach((entry: CobaltEntry) => {
+            values.push(entry.value);
+        })
+        return values;
+    }
     
     /**
      * Iterates through all the nodes in the Cobalt.
@@ -194,7 +230,7 @@ export class Cobalt {
         // Iterate until there's a currentNode as next
         while (currentNode) {
             // Call the function given as an input
-            fn(currentNode, index);
+            fn.call(currentNode, index);
             // Update the current node with the next
             currentNode = currentNode.next;
             // Increase the index
@@ -209,7 +245,7 @@ export class Cobalt {
      * 
      * @param fn function called on (currentNode, index)
      */
-    reverseForEach(fn: Function) {
+    forEachReverse(fn: Function) {
         // Get the head as the current node
         let currentNode = this.tail;
         // Set the index as the cache size - 1
@@ -217,12 +253,34 @@ export class Cobalt {
         // Iterate until there's a currentNode as previous
         while (currentNode) {
             // Call the function given as an input
-            fn(currentNode, index);
+            fn.call(currentNode, index);
             // Update the current node with the previous
             currentNode = currentNode.prev;
             // Decrease the index
             index--;
         }
+    }
+
+    /**
+     * Converts the CobaltCache into an Array of entries
+     * 
+     * @returns an array with all the Cobalt entries
+     */
+    toArray(): Array<CobaltEntry> {
+        const array = new Array(this.size);
+        this.forEach((entry: CobaltEntry, index: number) => array[index] = entry);
+        return array;
+    }
+
+    /**
+     * Converts the CobaltCache into a reversed Array of entries
+     * 
+     * @returns an array with all the Cobalt entries in reverse order
+     */
+    toArrayReverse(): Array<CobaltEntry> {
+        const array = new Array(this.size);
+        this.forEachReverse((entry: CobaltEntry, index: number) => array[index] = entry);
+        return array;
     }
 
     /**
