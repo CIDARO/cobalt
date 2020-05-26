@@ -10,17 +10,20 @@
     version 1.0.0
   </p>
   <p>
+    <a href="#">
+      <img src="https://github.com/CIDARO/cobalt/workflows/test/badge.svg" />
+    </a>
     <a href="https://github.com/CIDARO/cobalt/issues">
-      <img src="https://img.shields.io/github/issues/CIDARO/cobalt">
+      <img src="https://img.shields.io/github/issues/CIDARO/cobalt" />
     </a>
     <a href="https://github.com/CIDARO/cobalt/network">
-      <img src="https://img.shields.io/github/forks/CIDARO/cobalt">
+      <img src="https://img.shields.io/github/forks/CIDARO/cobalt" />
     </a>
     <a href="https://github.com/CIDARO/cobalt/stargazers">
-      <img src="https://img.shields.io/github/stars/CIDARO/cobalt">
+      <img src="https://img.shields.io/github/stars/CIDARO/cobalt" />
     </a>
     <a href="https://github.com/CIDARO/cobalt/blob/master/LICENSE">
-      <img src="https://img.shields.io/github/license/CIDARO/cobalt">
+      <img src="https://img.shields.io/github/license/CIDARO/cobalt" />
     </a>
   </p>
   <br/>
