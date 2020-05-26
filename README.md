@@ -4,7 +4,7 @@
   <br/>
   <br/>
   <p>
-    Open Source LRU Cache Atom.
+    Open Source LRU Cache for Deno.
   </p>
   <p>
     version 0.1.0-alpha
@@ -29,7 +29,7 @@
 
 ## Description
 
-**Cobalt** is an Open Source LRU Cache Atom made with Deno.
+**Cobalt** is an Open Source LRU Cache for Deno.
 
 ---
 
