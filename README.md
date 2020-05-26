@@ -14,10 +14,10 @@
       <img src="https://img.shields.io/github/issues/CIDARO/cobalt">
     </a>
     <a href="https://github.com/CIDARO/cobalt/network">
-      <img src="https://img.shields.io/github/network/CIDARO/cobalt">
+      <img src="https://img.shields.io/github/forks/CIDARO/cobalt">
     </a>
     <a href="https://github.com/CIDARO/cobalt/stargazers">
-      <img src="https://img.shields.io/github/stargazers/CIDARO/cobalt">
+      <img src="https://img.shields.io/github/stars/CIDARO/cobalt">
     </a>
     <a href="https://github.com/CIDARO/cobalt/blob/master/LICENSE">
       <img src="https://img.shields.io/github/license/CIDARO/cobalt">
