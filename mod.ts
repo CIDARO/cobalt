@@ -24,20 +24,31 @@ export interface CobaltEntryOptions {
 /**
  * CobaltEntry class defines all the objects that are available 
  * in the double linked list and in the cache.
- * 
- * @property {String} key CobaltEntry key
- * @property {String} value CobaltEntry value
- * @property {CobaltEntry | null} next Next entry in the list
- * @property {CobaltEntry | null} prev Previous entry in the list
- * @property {number} date When the entry has been created (timestamp)
- * @property {number} maxAge How long the entry will live (in seconds)
  */
 export class CobaltEntry {
+    /**
+     * CobaltEntry key
+     */
     key: String;
+    /**
+     * CobaltEntry value
+     */
     value: String;
+    /**
+     * Next entry in the list
+     */
     next: CobaltEntry | null;
+    /**
+     * Previous entry in the list
+     */
     prev: CobaltEntry | null;
+    /**
+     * When the entry has been created (timestamp)
+     */
     date: number;
+    /**
+     * How long the entry will live (in seconds)
+     */
     maxAge: number = 0;
 
     /**
@@ -67,20 +78,31 @@ export class CobaltEntry {
 
 /**
  * Cobalt defines our least recently used cache.
- * 
- * @property {number} capacity Cobalt cache capacity (default is 1000)
- * @property {Map<String, CobaltEntry>} cache Cobalt map String->CobaltEntry
- * @property {CobaltEntry | null} head Cobalt head (MRU - Most Recently Used item)
- * @property {CobaltEntry | null} tail Cobalt tail (LRU - Least Recently Used item)
- * @property {boolean} allowStale If the Cobalt cache allows staleness or not
- * @property {number} maxAge Max age that an entry can live in seconds if allowStale is true
  */
 export class Cobalt {
+    /**
+     * Cobalt cache capacity (default is 1000)
+     */
     capacity: number;
+    /**
+     * Cobalt map String->CobaltEntry
+     */
     cache: Map<String, CobaltEntry>;
+    /**
+     * Cobalt head (MRU - Most Recently Used item)
+     */
     head: CobaltEntry | null;
+    /**
+     * Cobalt tail (LRU - Least Recently Used item)
+     */
     tail: CobaltEntry | null;
+    /**
+     * If the Cobalt cache allows staleness or not
+     */
     allowStale: boolean;
+    /**
+     * Max age that an entry can live in seconds if allowStale is true
+     */
     maxAge: number = 0;
 
     /**
