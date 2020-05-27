@@ -10,7 +10,7 @@
     version 1.0.0
   </p>
   <p>
-    <a href="https://deno.land/x/cobalt/mod.ts">
+    <a href="https://doc.deno.land/https/deno.land/x/cobalt/mod.ts">
       <img src="https://doc.deno.land/badge.svg" />
     </a>
     <a href="#">
