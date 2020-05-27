@@ -1,6 +1,7 @@
 <div align="center">
   <br/>
-  <img src="./cobalt.png" width="200" />
+  <!--<img src="./cobalt.png" width="200" />-->
+  ![Cobalt](./cobalt.png)
   <br/>
   <br/>
   <p>
@@ -10,6 +11,9 @@
     version 1.0.0
   </p>
   <p>
+    <a href="https://deno.land/x/cobalt/mod.ts">
+      <img src="https://doc.deno.land/badge.svg" />
+    </a>
     <a href="#">
       <img src="https://github.com/CIDARO/cobalt/workflows/test/badge.svg" />
     </a>
@@ -71,7 +75,7 @@
 In order to import Cobalt in your Deno code you must import it at the top:
 
 ```typescript
-import { Cobalt } from "https://github.com/CIDARO/cobalt/blob/master/mod.ts";
+import { Cobalt } from "https://deno.land/x/cobalt/mod.ts";
 ```
 
 ### Create new Cobalt object
