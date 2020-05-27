@@ -24,19 +24,20 @@ export interface CobaltEntryOptions {
 /**
  * CobaltEntry class defines all the objects that are available 
  * in the double linked list and in the cache.
+ * 
+ * @property {String} key CobaltEntry key
+ * @property {String} value CobaltEntry value
+ * @property {CobaltEntry | null} next Next entry in the list
+ * @property {CobaltEntry | null} prev Previous entry in the list
+ * @property {number} date When the entry has been created (timestamp)
+ * @property {number} maxAge How long the entry will live (in seconds)
  */
 export class CobaltEntry {
-    // CobaltEntry key
     key: String;
-    // CobaltEntry value
     value: String;
-    // Next CobaltEntry in the list
     next: CobaltEntry | null;
-    // Prev CobaltEntry in the list
     prev: CobaltEntry | null;
-    // When the entry has been created
     date: number;
-    // Entry max age
     maxAge: number = 0;
 
     /**
@@ -66,19 +67,20 @@ export class CobaltEntry {
 
 /**
  * Cobalt defines our least recently used cache.
+ * 
+ * @property {number} capacity Cobalt cache capacity (default is 1000)
+ * @property {Map<String, CobaltEntry>} cache Cobalt map String->CobaltEntry
+ * @property {CobaltEntry | null} head Cobalt head (MRU - Most Recently Used item)
+ * @property {CobaltEntry | null} tail Cobalt tail (LRU - Least Recently Used item)
+ * @property {boolean} allowStale If the Cobalt cache allows staleness or not
+ * @property {number} maxAge Max age that an entry can live in seconds if allowStale is true
  */
 export class Cobalt {
-    // Cobalt capacity (default is 1000)
     capacity: number;
-    // Cobalt map
     cache: Map<String, CobaltEntry>;
-    // Cobalt head (most recently used item)
     head: CobaltEntry | null;
-    // Cobalt tail (least recently used item)
     tail: CobaltEntry | null;
-    // If the cache allows staleness or not
     allowStale: boolean;
-    // Max age that an entry can live in seconds if allowStale is true
     maxAge: number = 0;
 
     /**
