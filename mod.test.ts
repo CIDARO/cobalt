@@ -1,8 +1,8 @@
 import { Cobalt } from "./mod.ts";
 import { assertEquals, assert, assertNotEquals } from "https://deno.land/std@v0.50.0/testing/asserts.ts";
 
-const cache = new Cobalt(100);
-const staleCache = new Cobalt(100, true, 1);
+const cache = new Cobalt({capacity: 100});
+const staleCache = new Cobalt({capacity: 100, allowStale: true, maxAge: 1});
 
 Deno.test("Setting one item.", () => {
     cache.set('test', 'test');

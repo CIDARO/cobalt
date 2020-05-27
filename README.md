@@ -83,8 +83,8 @@ After you've imported Cobalt, initialize it with the following code:
 
 ```typescript
 const cobalt = new Cobalt(); // With default 1000 capacity
-const cobaltExpanded = new Cobalt(10000); // Override the default capacity
-const cobaltStale = new Cobalt(10000, true, 10); // Creates a new cobalt cache that allows staleness with objects lasting max 10 seconds
+const cobaltExpanded = new Cobalt({capacity: 10000}); // Override the default capacity
+const cobaltStale = new Cobalt({capacity: 10000, allowStale: true, maxAge: 10}); // Creates a new cobalt cache that allows staleness with objects lasting max 10 seconds
 ```
 
 ### Set, get and remove a key/value pair

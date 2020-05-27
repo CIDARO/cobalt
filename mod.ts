@@ -1,4 +1,27 @@
 /**
+ * CobaltOptions interface defines how a Cobalt cache
+ * must be initialized.
+ */
+export interface CobaltOptions {
+    capacity?: number; // Cobalt cache capacity
+    allowStale?: boolean; // If the Cobalt cache allows staleness or not
+    maxAge?: number; // Max age in seconds for each entry
+}
+
+/**
+ * CobaltEntryOptions interface defines the new CobaltEntry
+ * options, including key, value, next entry, previous entry
+ * and the maxAge value.
+ */
+export interface CobaltEntryOptions {
+    key: String; // entry key
+    value: String; // entry value
+    next?: CobaltEntry; // next entry
+    prev?: CobaltEntry; // previous entry
+    maxAge?: number; // max age in seconds
+}
+
+/**
  * CobaltEntry class defines all the objects that are available 
  * in the double linked list and in the cache.
  */
@@ -19,18 +42,15 @@ export class CobaltEntry {
     /**
      * Constructor method for a new CobaltEntry
      * 
-     * @param key entry key
-     * @param value entry value
-     * @param next next entry in the list
-     * @param prev previous entry in the list
+     * @param options new CobaltEntry options object
      */
-    constructor(key: String, value: String, next?: CobaltEntry, prev?: CobaltEntry, maxAge?: number) {
-        this.key = key;
-        this.value = value;
-        this.next = next || null;
-        this.prev = prev || null;
+    constructor(options: CobaltEntryOptions) {
+        this.key = options.key;
+        this.value = options.value;
+        this.next = options.next || null;
+        this.prev = options.prev || null;
         this.date = Date.now();
-        this.maxAge = maxAge || 0;
+        this.maxAge = options.maxAge || 0;
     }
 
     /**
@@ -64,15 +84,15 @@ export class Cobalt {
     /**
      * Constructor method for a new Cobalt
      * 
-     * @param capacity cache capacity
+     * @param options new Cobalt cache options
      */
-    constructor(capacity?: number, allowStale?: boolean, maxAge?: number) {
-        this.capacity = capacity || 1000;
+    constructor(options?: CobaltOptions) {
+        this.capacity = options?.capacity || 1000;
         this.cache = new Map<String, CobaltEntry>();
         this.head = null;
         this.tail = null;
-        this.allowStale = allowStale || false;
-        if (this.allowStale) this.maxAge = maxAge || 0;
+        this.allowStale = options?.allowStale || false;
+        if (this.allowStale) this.maxAge = options?.maxAge || 0;
     }
 
     /**
@@ -96,11 +116,11 @@ export class Cobalt {
         let newEntry;
         // Create the new entry
         if (!this.head) {
-            newEntry = new CobaltEntry(key, value, undefined, undefined, this.maxAge);
+            newEntry = new CobaltEntry({key, value, maxAge: this.maxAge});
             // Set it as the new head and tail
             this.head = this.tail = newEntry;
         } else {
-            newEntry = new CobaltEntry(key, value, this.head, undefined, this.maxAge);
+            newEntry = new CobaltEntry({key, value, next: this.head, maxAge: this.maxAge});
             // Change the current head prev link
             this.head.prev = newEntry;
             // Set the new entry as the head
