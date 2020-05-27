@@ -1,7 +1,6 @@
 <div align="center">
   <br/>
-  <!--<img src="./cobalt.png" width="200" />-->
-  ![Cobalt](./cobalt.png)
+  <img src="./cobalt.png" width="200" />
   <br/>
   <br/>
   <p>
